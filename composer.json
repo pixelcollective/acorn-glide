@@ -21,14 +21,12 @@
  "autoload": {
   "psr-4": {
    "TinyPixel\\WordPress\\Glide\\": "src/"
-  },
-  "scripts": [
-   "src/helpers/helpers.php"
-  ]
+  }
  },
  "require": {
   "php": ">=7.3",
-  "league/glide-laravel": "^1.0"
+  "league/glide-laravel": "^1.0",
+  "league/glide": "^1.5"
  },
  "extra": {
   "acorn": {

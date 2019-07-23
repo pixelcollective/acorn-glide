@@ -23,6 +23,7 @@ return [
     */
 
     'source' => wp_upload_dir()['basedir'],
+    'source_url' => wp_upload_dir()['baseurl'],
 
     /*
     |----------------------------------------------------------------------
@@ -33,7 +34,8 @@ return [
     |
     */
 
-    'cache'  => wp_upload_dir()['basedir'] . '/glide',
+    'cache'  => wp_upload_dir()['basedir'] . 'glide',
+    'cache_url' => wp_upload_dir()['baseurl'] . '/glide/',
 
     /*
     |----------------------------------------------------------------------
@@ -119,21 +121,4 @@ return [
     */
 
     'base_url' => '',
-
-    /*
-    |----------------------------------------------------------------------
-    | Response
-    |----------------------------------------------------------------------
-    |
-    | In addition to generating manipulated images, Glide also helps with
-    | creating HTTP responses using the  getImageResponse() method. This
-    | is recommended over the outputImage() method, since it allows your
-    | application to handle the actual output of the image.
-    |
-    | @link https://glide.thephpleague.com/1.0/config/responses/
-    |
-    */
-
-    'response' => '',
-
 ];
