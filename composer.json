@@ -1,0 +1,40 @@
+{
+ "name": "tiny-pixel/acorn-glide",
+ "type": "package",
+ "license": "MIT",
+ "description": "WordPress image manipulation for Acorn",
+ "authors": [
+  {
+   "name": "Kelly Mears",
+   "email": "kelly@tinypixel.dev"
+  }
+ ],
+ "keywords": [
+  "wordpress",
+  "acorn",
+  "sage",
+  "glide"
+ ],
+ "support": {
+  "issues": "https://github.com/pixelcollective/acorn-glide/issues"
+ },
+ "autoload": {
+  "psr-4": {
+   "TinyPixel\\WordPress\\Glide\\": "src/"
+  },
+  "scripts": [
+   "src/helpers/helpers.php"
+  ]
+ },
+ "require": {
+  "php": ">=7.3",
+  "league/glide-laravel": "^1.0"
+ },
+ "extra": {
+  "acorn": {
+   "providers": [
+    "TinyPixel\\WordPress\\Glide\\Providers\\GlideServiceProvider"
+   ]
+  }
+ }
+}
