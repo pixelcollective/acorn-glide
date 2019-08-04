@@ -26,7 +26,7 @@ class GlideImage
      * @param  array  $modificationParamters
      * @return string
      */
-    public static function glide(string $file, array $modificationParameters) : string
+    public static function make(string $file, array $modificationParameters) : string
     {
         $config = config('glide');
 
