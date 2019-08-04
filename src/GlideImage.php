@@ -1,9 +1,9 @@
 <?php
 
-namespace TinyPixel\WordPress\Glide;
+namespace TinyPixel\Acorn\Glide;
 
-use League\Glide\ServerFactory;
 use function Roots\config;
+use League\Glide\ServerFactory;
 
 class GlideImage
 {
@@ -19,24 +19,25 @@ class GlideImage
      */
     protected $modificationParameters = [];
 
-    public static function glide(string $file, $modificationParameters) : string
+    /**
+     * Glide
+     *
+     * @param  string $file
+     * @param  array  $modificationParamters
+     * @return string
+     */
+    public static function glide(string $file, array $modificationParameters) : string
     {
         $config = config('glide');
 
-        $modificationParameters = $modificationParameters;
-
-        $sourceFileName = $file;
-
-        $glideServerParameters = [
+        $glideServer = ServerFactory::create([
             'source' => $config['source'],
             'cache'  => $config['cache'],
             'driver' => $config['driver'],
-        ];
+            'max_image_size' => $config['max_image_size'],
+            'presets' => $config['presets'],
+        ]);
 
-        // dd($glideServerParameters);
-
-        $glideServer = ServerFactory::create($glideServerParameters);
-
-        return $config['cache_url'] . $glideServer->makeImage($sourceFileName, $modificationParameters);
+        return $config['cache_url'] . $glideServer->makeImage($file, $modificationParameters);
     }
 }

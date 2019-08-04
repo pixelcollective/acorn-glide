@@ -1,16 +1,16 @@
 <?php
 
-namespace TinyPixel\WordPress\Glide;
+namespace TinyPixel\Acorn\Glide\Facades;
 
-use Illuminate\Support\Facades\Facade;
+use Roots\Acorn\Facade;
 
-class GlideImageFacade extends Facade
+class Glide extends Facade
 {
     /**
      * Get the registered name of the component.
      */
     protected static function getFacadeAccessor() : string
     {
-        return 'glide-image';
+        return 'image';
     }
 }

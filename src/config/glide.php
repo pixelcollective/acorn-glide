@@ -34,7 +34,7 @@ return [
     |
     */
 
-    'cache'  => wp_upload_dir()['basedir'] . 'glide',
+    'cache'  => wp_upload_dir()['basedir'] . '/glide',
     'cache_url' => wp_upload_dir()['baseurl'] . '/glide/',
 
     /*
@@ -72,7 +72,7 @@ return [
     |
     */
 
-    'max_image_size' => '',
+    'max_image_size' => '1200x800',
 
     /*
     |----------------------------------------------------------------------

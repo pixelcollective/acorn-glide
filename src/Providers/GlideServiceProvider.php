@@ -1,32 +1,14 @@
 <?php
 
-namespace TinyPixel\WordPress\Glide\Providers;
+namespace TinyPixel\Acorn\Glide\Providers;
 
-use \TinyPixel\WordPress\Glide\GlideImage;
-
-use \Roots\Acorn\ServiceProvider;
-use function \Roots\config_path;
-use \Blade;
+use function Roots\config_path;
+use Roots\Acorn\ServiceProvider;
+use TinyPixel\Acorn\Glide\GlideImage;
+use TinyPixel\Acorn\Glide\Facades\Glide;
 
 class GlideServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap the application events.
-     */
-    public function boot()
-    {
-        $this->publishes([
-            __DIR__ . '/../config/glide.php' => $this->app->configPath() . '/' . 'glide.php',
-        ], 'config');
-
-        $glide = $this->app->make('glide-image');
-
-        collect($this->directives)->each(function ($item, $key) {
-           $this->app['blade.compiler']->directive($key, $item);
-        });
-
-    }
-
     /**
      * Register the service provider.
      */
@@ -34,10 +16,22 @@ class GlideServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/glide.php', 'glide');
 
-        $this->app->singleton('glide-image', function () {
-            return new GlideImage();
-        });
+        $this->app->singleton('image', GlideImage::class);
 
-        $this->directives = require __DIR__ .'/../GlideImageDirectives.php';
+        $this->app->singleton(Glide::class, function () {
+            return $this->app->make('image');
+        });
+    }
+
+    /**
+     * Bootstrap the application events.
+     */
+    public function boot()
+    {
+        $this->publishes([
+            __DIR__ . '/../config/glide.php' => config_path('glide.php'),
+        ], 'glide');
+
+        $this->app->make('image');
     }
 }
