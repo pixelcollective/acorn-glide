@@ -19,6 +19,13 @@ use League\Glide\Filesystem\FilesystemException;
 class GlideImage
 {
     /**
+     * Configuration.
+     *
+     * @var object The application configuration
+     */
+    protected static $config;
+
+    /**
      * Image source file.
      *
      * @var string The path to the input image.
@@ -38,9 +45,9 @@ class GlideImage
      *
      * @param array $config
      */
-    public function __construct(array $config)
+    public function __construct($config)
     {
-        $this->config = $config['glide'];
+        self::$config = $config['glide'];
     }
 
     /**
@@ -56,13 +63,13 @@ class GlideImage
     public static function make(string $file, array $modificationParameters) : string
     {
         $glideServer = ServerFactory::create([
-            'source'         => $config['source'],
-            'cache'          => $config['cache'],
-            'driver'         => $config['driver'],
-            'presets'        => $config['presets'],
-            'max_image_size' => $config['max_image_size'],
+            'source'         => self::$config['source'],
+            'cache'          => self::$config['cache'],
+            'driver'         => self::$config['driver'],
+            'presets'        => self::$config['presets'],
+            'max_image_size' => self::$config['max_image_size'],
         ]);
 
-        return $config['cache_url'] . $glideServer->makeImage($file, $modificationParameters);
+        return self::$config['cache_url'] . $glideServer->makeImage($file, $modificationParameters);
     }
 }
