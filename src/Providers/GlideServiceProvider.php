@@ -1,37 +1,57 @@
 <?php
 
-namespace TinyPixel\Acorn\Glide\Providers;
+namespace TinyPixel\AcornGlide\Providers;
 
-use function Roots\config_path;
 use Roots\Acorn\ServiceProvider;
-use TinyPixel\Acorn\Glide\GlideImage;
-use TinyPixel\Acorn\Glide\Facades\Glide;
+use TinyPixel\AcornGlide\GlideImage;
+use TinyPixel\AcornGlide\Facades\Glide;
 
 class GlideServiceProvider extends ServiceProvider
 {
     /**
      * Register the service provider.
+     *
+     * @return void
      */
-    public function register()
+    public function register() : void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/glide.php', 'glide');
+        $this->glidePublishable = __DIR__ . '/../config/glide.php';
+        $this->glideConfigPath  = $this->app->configPath('glide.php');
 
-        $this->app->singleton('image', GlideImage::class);
+        if ($this->isBootable()) {
+            $this->mergeConfigFrom($this->glideConfigPath, 'glide');
 
-        $this->app->singleton(Glide::class, function () {
-            return $this->app->make('image');
-        });
+            $this->app->singleton('image', function ($app) {
+                return new GlideImage($app['config']);
+            });
+
+            $this->app->singleton('image.alias', function ($app) {
+                return $app->make('image');
+            });
+        }
     }
 
     /**
      * Bootstrap the application events.
+     *
+     * @return void
      */
-    public function boot()
+    public function boot() : void
     {
         $this->publishes([
-            __DIR__ . '/../config/glide.php' => config_path('glide.php'),
+            $this->glidePublishable => $this->glideConfigPath,
         ], 'glide');
 
         $this->app->make('image');
+    }
+
+    /**
+     * Is bootable
+     *
+     * @return bool
+     */
+    public function isBootable() : bool
+    {
+        return file_exists($this->glideConfigPath);
     }
 }

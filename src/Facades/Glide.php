@@ -1,6 +1,6 @@
 <?php
 
-namespace TinyPixel\Acorn\Glide\Facades;
+namespace TinyPixel\AcornGlide\Facades;
 
 use Roots\Acorn\Facade;
 
@@ -11,6 +11,6 @@ class Glide extends Facade
      */
     protected static function getFacadeAccessor() : string
     {
-        return 'image';
+        return 'image.alias';
     }
 }
