@@ -14,8 +14,7 @@ use League\Glide\Filesystem\FilesystemException;
  * @version    1.0.0
  * @since      1.0.0
  *
- * @package    TinyPixel\AcornGlide
- * @subpackage GlideImage
+ * @package    AcornGlide
  */
 class GlideImage
 {
@@ -41,14 +40,14 @@ class GlideImage
      */
     public function __construct(array $config)
     {
-        $this->config = $config;
+        $this->config = $config['glide'];
     }
 
     /**
      * Glide make
      *
      * @param string $file
-     * @param array $modificationParameters
+     * @param array  $modificationParameters
      *
      * @return string
      * @throws FileNotFoundException
@@ -56,8 +55,6 @@ class GlideImage
      */
     public static function make(string $file, array $modificationParameters) : string
     {
-        $config = config('glide');
-
         $glideServer = ServerFactory::create([
             'source'         => $config['source'],
             'cache'          => $config['cache'],

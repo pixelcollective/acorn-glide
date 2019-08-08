@@ -22,7 +22,7 @@ return [
     |
     */
 
-    'source' => wp_upload_dir()['basedir'],
+    'source'     => wp_upload_dir()['basedir'],
     'source_url' => wp_upload_dir()['baseurl'],
 
     /*
@@ -34,7 +34,7 @@ return [
     |
     */
 
-    'cache'  => wp_upload_dir()['basedir'] . '/glide',
+    'cache'     => wp_upload_dir()['basedir'] . '/glide',
     'cache_url' => wp_upload_dir()['baseurl'] . '/glide/',
 
     /*
@@ -95,7 +95,7 @@ return [
             'w'   => 600,
             'h'   => 400,
             'fit' => 'crop',
-        ]
+        ],
     ],
 
     /*

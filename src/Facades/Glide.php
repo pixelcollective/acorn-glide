@@ -11,9 +11,8 @@ use Roots\Acorn\Facade;
  * @license    MIT
  * @version    1.0.0
  * @since      1.0.0
- * @copyright  Tiny Pixel Collective <tinypixel.dev>
+ *
  * @package    AcornGlide
- * @subpackage Facades
  */
 class Glide extends Facade
 {

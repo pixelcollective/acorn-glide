@@ -7,15 +7,14 @@ use TinyPixel\AcornGlide\GlideImage;
 use TinyPixel\AcornGlide\Facades\Glide;
 
 /**
- * Glide service provider
+ * Glide image service provider
  *
  * @author     Kelly Mears <kelly@tinypixel.dev>
  * @license    MIT
  * @version    1.0.0
  * @since      1.0.0
- * @copyright  Tiny Pixel Collective <tinypixel.dev>
+ *
  * @package    AcornGlide
- * @subpackage Providers
  */
 class GlideServiceProvider extends ServiceProvider
 {
