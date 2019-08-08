@@ -23,19 +23,3 @@ After installation run the following command to publish the starter configuratio
 ```bash
 wp acorn vendor:publish
 ```
-
-## Usage
-
-Once installed, utilize Glide in your business code with:
-
-```php
-$this->app['glide-image']::glide($file, $parameters);
-```
-
-Please refer to the Glide documentation for the parameters and what they do.
-
-In your views you can leverage the `@glide` directive. Note that this directive takes its parameters in `JSON` format.
-
-```php
-  <img src="@glide({"image": "/2019/07/map.png", "parameters": {"w": 300, "filt": "greyscale"}})" />
-```
