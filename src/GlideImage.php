@@ -2,13 +2,12 @@
 
 namespace TinyPixel\AcornGlide;
 
-use function Roots\config;
 use League\Glide\ServerFactory;
 use League\Glide\Filesystem\FileNotFoundException;
 use League\Glide\Filesystem\FilesystemException;
 
 /**
- * Acorn Glide
+ * Acorn Glide image response
  *
  * @author     Kelly Mears <kelly@tinypixel.dev>
  * @license    MIT
@@ -36,7 +35,17 @@ class GlideImage
     protected $modificationParameters = [];
 
     /**
-     * Glide
+     * Constructor
+     *
+     * @param array $config
+     */
+    public function __construct(array $config)
+    {
+        $this->config = $config;
+    }
+
+    /**
+     * Glide make
      *
      * @param string $file
      * @param array $modificationParameters
